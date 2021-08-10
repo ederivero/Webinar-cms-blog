@@ -6,7 +6,8 @@
   "author": "Eduardo de Rivero Manrique",
   "scripts": {
     "start": "node ./dist/index.js",
-    "start:dev": "dotenv -e .env nodemon ./src/index.ts"
+    "start:dev": "dotenv -e .env nodemon ./src/index.ts",
+    "build": "tsc -p ."
   },
   "dependencies": {
     "@prisma/client": "^2.28.0",

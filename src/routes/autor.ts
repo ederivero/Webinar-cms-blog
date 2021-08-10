@@ -4,4 +4,4 @@ import { authValidator } from "../utils/validador";
 
 export const autorRouter = Router();
 
-autorRouter.route("/autor").post(authValidator, crear).get(listar);
+autorRouter.route("/autores").post(authValidator, crear).get(listar);

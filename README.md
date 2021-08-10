@@ -29,7 +29,9 @@ Esto creará una carpeta con el nombre _node_modules_ y ahí se instalarán toda
 Luego tendremos que configurar las variables que usaremos en nuestro proyecto, para ello necesitaremos crear un archivo `.env` que es ahi donde se almacenaran las variables, copiaremos la plantilla ubicada en `.env.example` y pondremos los valores de la conexion a nuestra base de datos y nuestra clave de [JWT](https://jwt.io), por ejemplo:
 
 ```
-DATABASE_URL=postgresql://usuario:password@host:port/database?schema=public SECRET_JWT=clave_urcha_archi_mega_secreta
+DATABASE_URL=postgresql://usuario:password@host:port/database?schema=public
+
+SECRET_JWT=clave_urcha_archi_mega_secreta
 ```
 
 Luego una vez creada la base de datos ahora tendremos que migrar las migraciones (valga la redundancia 🤪) generadas de nuestro prisma con el siguiente comando

@@ -13,9 +13,6 @@ export const registro = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
-  console.log("entro");
-
-  console.log(req.body);
   const { correo, nombre, password } = req.body;
 
   const password_encrypted = hashSync(password, 10);
@@ -35,8 +32,8 @@ export const registro = async (
     });
   } catch (error) {
     return res.status(500).json({
-      sucess: false,
-      content: null,
+      success: false,
+      content: error,
       message: "Error al crear el usuario",
     });
   }

@@ -1,0 +1,422 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Documentación del **webinar de Posts** de [CodiGo](https://codigo.edu.pe/) usando un backend en [NodeJs](https://nodejs.org/) y un [ORM](https://www2.deloitte.com/es/es/pages/technology/articles/que-es-orm.html) como [Prisma](https://www.prisma.io/) y [JWT](https://jwt.io/).",
+    "version": "1.0.0",
+    "title": "Webinar Posts",
+    "contact": {
+      "name": "Eduardo de Rivero",
+      "email": "ederiveroman@gmail.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "webinar-cms-blogs.herokuapp.com",
+  "basePath": "/",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "securityDefinitions": {
+    "api_key": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "paths": {
+    "/posts": {
+      "post": {
+        "tags": [
+          "Post"
+        ],
+        "operationId": "/posts",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/~1postsrequest"
+            }
+          }
+        ],
+        "security": [
+          {
+            "api_key": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Post"
+        ],
+        "operationId": "Get/posts",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "pagina",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          },
+          {
+            "name": "porPagina",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/post/{id}": {
+      "put": {
+        "tags": [
+          "Post"
+        ],
+        "operationId": "/post/:id",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "api_key": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID del post a actualizar",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/~1post~1%3Aidrequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Post"
+        ],
+        "operationId": "/post/:id1",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "api_key": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID del post a eliminar",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/registro": {
+      "post": {
+        "tags": [
+          "Usuario"
+        ],
+        "operationId": "/registro",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/~1registrorequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": [
+          "Usuario"
+        ],
+        "operationId": "/login",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/~1loginrequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/autores": {
+      "get": {
+        "tags": [
+          "Autor"
+        ],
+        "operationId": "/autores",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Autor"
+        ],
+        "operationId": "Post/autores",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "api_key": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          },
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/~1autoresrequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "/postsrequest": {
+      "title": "/postsrequest",
+      "example": {
+        "titulo": "Webinar de codiGo",
+        "descripcion": "Hermoso webinar donde el backend es chevere!",
+        "usuarioId": 1
+      },
+      "type": "object",
+      "properties": {
+        "titulo": {
+          "type": "string"
+        },
+        "descripcion": {
+          "type": "string"
+        },
+        "usuarioId": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "titulo",
+        "descripcion",
+        "usuarioId"
+      ]
+    },
+    "/post/:idrequest": {
+      "title": "/post/:idrequest",
+      "example": {
+        "titulo": "Webinar de codiGo",
+        "descripcion": "Hermoso webinar donde el backend es chevere!",
+        "usuarioId": 1
+      },
+      "type": "object",
+      "properties": {
+        "titulo": {
+          "type": "string"
+        },
+        "descripcion": {
+          "type": "string"
+        },
+        "usuarioId": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "titulo",
+        "descripcion",
+        "usuarioId"
+      ]
+    },
+    "/registrorequest": {
+      "title": "/registrorequest",
+      "example": {
+        "correo": "correo@correo.com",
+        "nombre": "Juanito Portales",
+        "password": "123456"
+      },
+      "type": "object",
+      "properties": {
+        "correo": {
+          "type": "string"
+        },
+        "nombre": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "correo",
+        "nombre",
+        "password"
+      ]
+    },
+    "/loginrequest": {
+      "title": "/loginrequest",
+      "example": {
+        "correo": "correo@correo.com",
+        "password": "123456"
+      },
+      "type": "object",
+      "properties": {
+        "correo": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "correo",
+        "password"
+      ]
+    },
+    "/autoresrequest": {
+      "title": "/autoresrequest",
+      "example": {
+        "nombre": "Pedro",
+        "apellido": "Casimiro"
+      },
+      "type": "object",
+      "properties": {
+        "nombre": {
+          "type": "string"
+        },
+        "apellido": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "nombre",
+        "apellido"
+      ]
+    }
+  },
+  "tags": [
+    {
+      "name": "Post"
+    },
+    {
+      "name": "Usuario"
+    },
+    {
+      "name": "Autor"
+    }
+  ]
+}

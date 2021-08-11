@@ -5,9 +5,12 @@ import express, {
   Request,
   Response,
 } from "express";
+import swaggerUI from "swagger-ui-express";
 import { autorRouter } from "../routes/autor";
 import { postRouter } from "../routes/post";
 import { usuarioRouter } from "../routes/usuario";
+import documentacion from "./swagger.json";
+
 export default class Server {
   app: Express;
   port: Number | String;
@@ -37,7 +40,11 @@ export default class Server {
   }
 
   routes() {
+    this.app.get("/", (req, res) => {
+      res.send("Documentacion en /docs");
+    });
     this.app.use("", usuarioRouter, autorRouter, postRouter);
+    this.app.use("/docs", swaggerUI.serve, swaggerUI.setup(documentacion));
   }
   start() {
     this.app.listen(this.port, () => {
